@@ -17,43 +17,43 @@ const SideBar: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className }) 
       <Checklist>
         <ChecklistItem
           linkTo={`${url}/open`}
-          isComplete={stepStatus[CertificationStep.OPEN_MEETING]}
-          isActive={currentStep === CertificationStep.OPEN_MEETING}
+          iscomplete={stepStatus[CertificationStep.OPEN_MEETING]}
+          isactivate={currentStep === CertificationStep.OPEN_MEETING}
         >
           Opening Meeting
         </ChecklistItem>
         <ChecklistItem
           linkTo={`${url}/inspection`}
-          isComplete={stepStatus[CertificationStep.SITE_INSPECTION]}
-          isActive={currentStep === CertificationStep.SITE_INSPECTION}
+          iscomplete={stepStatus[CertificationStep.SITE_INSPECTION]}
+          isactivate={currentStep === CertificationStep.SITE_INSPECTION}
         >
           Site Inspection
         </ChecklistItem>
         <ChecklistItem
           linkTo={`${url}/interview`}
-          isComplete={stepStatus[CertificationStep.EMPLOYEE_INTERVIEW]}
-          isActive={currentStep === CertificationStep.EMPLOYEE_INTERVIEW}
+          iscomplete={stepStatus[CertificationStep.EMPLOYEE_INTERVIEW]}
+          isactivate={currentStep === CertificationStep.EMPLOYEE_INTERVIEW}
         >
           Employee Interviews
         </ChecklistItem>
         <ChecklistItem
           linkTo={`${url}/observation`}
-          isComplete={stepStatus[CertificationStep.OBSERVATIONS]}
-          isActive={currentStep === CertificationStep.OBSERVATIONS}
+          iscomplete={stepStatus[CertificationStep.OBSERVATIONS]}
+          isactivate={currentStep === CertificationStep.OBSERVATIONS}
         >
           Observations
         </ChecklistItem>
         <ChecklistItem
           linkTo={`${url}/close`}
-          isComplete={stepStatus[CertificationStep.CLOSE_MEETING]}
-          isActive={currentStep === CertificationStep.CLOSE_MEETING}
+          iscomplete={stepStatus[CertificationStep.CLOSE_MEETING]}
+          isactivate={currentStep === CertificationStep.CLOSE_MEETING}
         >
           Closing Meeting
         </ChecklistItem>
         <ChecklistItem
           linkTo={`${url}/certissue`}
-          isComplete={stepStatus[CertificationStep.CERTIFICATION_ISSUE]}
-          isActive={currentStep === CertificationStep.CERTIFICATION_ISSUE}
+          iscomplete={stepStatus[CertificationStep.CERTIFICATION_ISSUE]}
+          isactivate={currentStep === CertificationStep.CERTIFICATION_ISSUE}
         >
           Certification Issue
         </ChecklistItem>

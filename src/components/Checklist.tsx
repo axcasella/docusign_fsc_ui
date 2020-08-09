@@ -12,11 +12,11 @@ export const Checklist = styled(Timeline)`
 
 interface IChecklistItem extends TimeLineItemProps {
   linkTo?: string;
-  isComplete?: boolean;
-  isActive?: boolean;
+  iscomplete?: boolean;
+  isactivate?: boolean;
 }
 
-const ChecklistItem: React.FC<IChecklistItem> = ({ linkTo, ...rest }) => {
+const ChecklistItem: React.FC<IChecklistItem> = ({ linkTo, iscomplete, isactivate, ...rest }) => {
   const history = useHistory();
 
   const onClick = useCallback(() => {
@@ -31,12 +31,12 @@ const ChecklistItem: React.FC<IChecklistItem> = ({ linkTo, ...rest }) => {
 };
 
 ChecklistItem.defaultProps = {
-  isComplete: false
+  iscomplete: false,
 };
 
 const COLOR_DONE = {
   border: '#1890ff',
-  fill: '#1890ff'
+  fill: '#1890ff',
 };
 const COLOR_ACTIVE = {
   border: '#1890ff',
@@ -47,15 +47,14 @@ const COLOR_INCOMPLETE = {
   fill: '#fff',
 };
 
-
 const StyledChecklistItem = styled(ChecklistItem)`
   :hover {
     cursor: pointer;
     font-weight: bold;
   }
   .ant-timeline-item-head-blue {
-    background-color: ${({ isComplete }) => (isComplete ? '#1890ff' : '#fff')};
-    box-shadow: ${({ isActive }) => isActive && '0px 0px 4px rgb(47 140 226)'};
+    background-color: ${({ iscomplete }) => (iscomplete ? '#1890ff' : '#fff')};
+    box-shadow: ${({ isactivate }) => isactivate && '0px 0px 4px rgb(47 140 226)'};
   }
 `;
 

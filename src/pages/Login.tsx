@@ -25,7 +25,6 @@ const Login = () => {
   const auth = useAuth();
   useEffect(() => {
     if (loc.state?.referrer && auth.isAuth) {
-      debugger;
       history.push(`${loc.state.referrer}`);
     }
   }, [auth.isAuth]);

@@ -19,15 +19,15 @@ const Interviews = () => (
     <Row>
       <Col md={{ span: 8 }}>
         {PEOPLE_INFO.map(({ label, value }) => (
-          <div>
+          <div key={value}>
             <Checkbox value={value}>{label}</Checkbox>
           </div>
         ))}
       </Col>
       <Col md={{ span: 16 }}>
         <Typography.Paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu fringilla nulla.
-          Cras euismod erat at felis semper, at tincidunt nibh facilisis. Suspendisse potenti.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu fringilla nulla. Cras euismod erat at
+          felis semper, at tincidunt nibh facilisis. Suspendisse potenti.
         </Typography.Paragraph>
         <Typography.Paragraph>
           <ZoomLink link="https://zoom.us/j/92401797536" />

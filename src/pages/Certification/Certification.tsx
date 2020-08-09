@@ -1,12 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { Row, Col } from 'antd';
 
-import { RootState } from 'store/types';
-import { setStepRoutes } from 'store/certification/actions';
-import { CertificationStep } from 'store/certification/types';
-
-import { Header, ProjectSummary, BodyContainer } from 'components';
+import { Header, ProjectSummary, BodyContainer, Chat } from 'components';
 import SideBar from './SideBar';
 import OpenMeeting from './OpenMeeting';
 import SiteInspection from './SiteInspection';
@@ -14,7 +10,7 @@ import Interviews from './Interviews';
 import Observations from './Observations';
 import CloseMeeeting from './CloseMeeeting';
 import CertificateIssue from './CertificateIssue';
-import { useEffect } from 'react';
+import { CertificationStep } from 'store/certification/types';
 import { useCertificationStep } from 'store/certification/hooks';
 
 const Certification = () => {
@@ -45,11 +41,7 @@ const Certification = () => {
           <Col xs={24} sm={8} md={5}>
             <SideBar />
           </Col>
-          <Col
-            xs={{ span: 17, offset: 2 }}
-            md={{ span: 15, offset: 2 }}
-            sm={{ span: 13, offset: 1 }}
-          >
+          <Col xs={{ span: 17, offset: 2 }} md={{ span: 15, offset: 2 }} sm={{ span: 13, offset: 1 }}>
             <Switch>
               <Route exact path={routes[CertificationStep.OPEN_MEETING]}>
                 <OpenMeeting />
@@ -73,6 +65,7 @@ const Certification = () => {
           </Col>
         </Row>
       </BodyContainer>
+      <Chat />
     </div>
   );
 };

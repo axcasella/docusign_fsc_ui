@@ -11,7 +11,7 @@ const Home = () => {
     if (!auth.isAuth) {
       history.push('/login');
     }
-  }, [auth.isAuth]);
+  }, [auth.isAuth, history]);
   return null;
 };
 
