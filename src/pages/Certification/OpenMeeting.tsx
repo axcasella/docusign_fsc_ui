@@ -5,14 +5,12 @@ import TimelineControl from './TimelineControl';
 import { ReactComponent as MeetingSVG } from 'assets/meeting.svg';
 import { CertificationStep } from 'store/certification/types';
 
-
-
 const OpenMeeting = () => (
   <>
     <Typography.Title level={3}>Open Meeting</Typography.Title>
     <Typography.Paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu fringilla nulla. Cras
-      euismod erat at felis semper, at tincidunt nibh facilisis. Suspendisse potenti.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu fringilla nulla. Cras euismod erat at
+      felis semper, at tincidunt nibh facilisis. Suspendisse potenti.
     </Typography.Paragraph>
     <Typography.Paragraph>
       <MeetingSVG width="256" height="256" />

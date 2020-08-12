@@ -11,11 +11,12 @@ import Observations from './Observations';
 import CloseMeeeting from './CloseMeeeting';
 import CertificateIssue from './CertificateIssue';
 import { CertificationStep } from 'store/certification/types';
-import { useCertificationStep } from 'store/certification/hooks';
+import { useCertificationStep, useCertification } from 'store/certification/hooks';
 
 const Certification = () => {
   const { path } = useRouteMatch();
   const { routes, setRoutes } = useCertificationStep();
+  const { certificate } = useCertification();
 
   useEffect(() => {
     setRoutes({

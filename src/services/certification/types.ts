@@ -1,0 +1,40 @@
+export type CertComment = {
+  _id: string;
+  comment: string;
+  author: string;
+  certificate: string;
+  timestamp: string;
+  __v: number;
+};
+
+export type CertificateType = {
+  '@odata.etag': string;
+  statecode: number;
+  fsc_cwsourcecountries: string;
+  statuscode: number;
+  createdon: Date;
+  fsc_certificatestatus: number;
+  _ownerid_value: string;
+  modifiedon: Date;
+  fsc_fsccertificateid: string;
+  versionnumber: number;
+  fsc_numberofsitesgroupmembers: number;
+  fsc_certificatetype: number;
+  _fsc_chorganization_value: string;
+  fsc_certificatenumber: string;
+  _modifiedby_value: string;
+  _fsc_cborganizationid_value: string;
+  fsc_name: string;
+  _createdby_value: string;
+  _owningbusinessunit_value: string;
+  _owninguser_value: string;
+  fsc_controlledwoodcode: string;
+  fsc_scope?: any;
+  importsequencenumber?: any;
+  _createdonbehalfby_value?: any;
+  timezoneruleversionnumber?: any;
+  _owningteam_value?: any;
+  overriddencreatedon?: any;
+  _modifiedonbehalfby_value?: any;
+  utcconversiontimezonecode?: any;
+};

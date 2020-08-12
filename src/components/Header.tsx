@@ -21,7 +21,7 @@ const StyledPageHeader = styled(PageHeader)`
 `;
 
 export default () => {
-  const { isAuth, logout, goToLoginPage } = useAuth();
+  const { isAuth, logout, goToLoginPage, user } = useAuth();
 
   const loggedOutFragment = [
     <Button key="1" onClick={goToLoginPage}>
@@ -29,7 +29,7 @@ export default () => {
     </Button>,
   ];
   const loggedInFragment = [
-    <span key="1">Welcome</span>,
+    <span key="1">Welcome {user?.name}</span>,
     <Button key="2" type="default" onClick={logout}>
       Logout
     </Button>,

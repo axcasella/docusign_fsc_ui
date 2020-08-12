@@ -1,3 +1,5 @@
+import { CertificateType } from "services/certification/types";
+
 export enum CertificationStep {
   OPEN_MEETING,
   SITE_INSPECTION,
@@ -8,8 +10,8 @@ export enum CertificationStep {
 }
 
 export type StepRoutes = {
-  [Key in CertificationStep]?: string
-}
+  [Key in CertificationStep]?: string;
+};
 
 interface IBaseAction {
   type: string;
@@ -32,4 +34,10 @@ export interface SetCurrentStepAction extends IBaseAction {
   };
 }
 
-export type AllActionTypes = CompleteStepAction | SetStepRoutesAction | SetCurrentStepAction;
+export interface LoadCertificationAction extends IBaseAction {
+  payload: {
+    cert: CertificateType;
+  };
+}
+
+export type AllActionTypes = CompleteStepAction | SetStepRoutesAction | SetCurrentStepAction | LoadCertificationAction;

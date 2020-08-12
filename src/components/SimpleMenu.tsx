@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 type SimpleMenuProps = {};
 interface SimpleMenuItemProps {
@@ -17,12 +18,16 @@ export const SimpleMenu: SimpleMenuType = styled(({ className, children }) => (
   padding: 0;
 `;
 
-const Item = styled(({ children, icon, ...rest }) => (
-  <li {...rest}>
-    <span>{icon}</span>
-    {children}
-  </li>
-))`
+const Item = styled(({ children, icon, linkto, ...rest }) => {
+  const history = useHistory();
+  const onLinkClick = () => linkto && history.push(linkto);
+  return (
+    <li onClick={onLinkClick} {...rest}>
+      <span>{icon}</span>
+      {children}
+    </li>
+  );
+})`
   cursor: pointer;
   margin-bottom: 12px;
   margin-left: -5px;

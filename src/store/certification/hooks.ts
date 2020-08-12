@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as CertActions from './actions';
 import { CertificationStep, StepRoutes } from './types';
@@ -21,5 +22,18 @@ export const useCertificationStep = () => {
     setStepStatus,
     currentStep,
     setCurrentStep,
+  };
+};
+
+export const useCertification = () => {
+  const dispatch = useDispatch();
+  const certificate = useSelector((state: RootState) => state.cert.activeCertificate);
+
+  useEffect(() => {
+    dispatch(CertActions.loadOrCreateCertification());
+  }, [dispatch]);
+
+  return {
+    certificate,
   };
 };

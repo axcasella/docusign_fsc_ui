@@ -11,17 +11,17 @@ export const Checklist = styled(Timeline)`
 `;
 
 interface IChecklistItem extends TimeLineItemProps {
-  linkTo?: string;
+  linkto?: string;
   iscomplete?: boolean;
   isactivate?: boolean;
 }
 
-const ChecklistItem: React.FC<IChecklistItem> = ({ linkTo, iscomplete, isactivate, ...rest }) => {
+const ChecklistItem: React.FC<IChecklistItem> = ({ linkto, iscomplete, isactivate, ...rest }) => {
   const history = useHistory();
 
   const onClick = useCallback(() => {
-    history.push(linkTo ?? '');
-  }, [linkTo]);
+    history.push(linkto ?? '');
+  }, [linkto]);
 
   return (
     <div onClick={onClick}>
@@ -32,19 +32,6 @@ const ChecklistItem: React.FC<IChecklistItem> = ({ linkTo, iscomplete, isactivat
 
 ChecklistItem.defaultProps = {
   iscomplete: false,
-};
-
-const COLOR_DONE = {
-  border: '#1890ff',
-  fill: '#1890ff',
-};
-const COLOR_ACTIVE = {
-  border: '#1890ff',
-  fill: '#fff',
-};
-const COLOR_INCOMPLETE = {
-  border: '#949494',
-  fill: '#fff',
 };
 
 const StyledChecklistItem = styled(ChecklistItem)`

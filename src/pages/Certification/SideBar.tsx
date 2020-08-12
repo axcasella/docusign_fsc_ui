@@ -10,48 +10,48 @@ const SideBar: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className }) 
   const { url } = useRouteMatch();
 
   const { stepStatus, currentStep } = useCertificationStep();
-  
+
   return (
     <div className={className}>
       <SectionHeading>Checklist</SectionHeading>
       <Checklist>
         <ChecklistItem
-          linkTo={`${url}/open`}
+          linkto={`${url}/open`}
           iscomplete={stepStatus[CertificationStep.OPEN_MEETING]}
           isactivate={currentStep === CertificationStep.OPEN_MEETING}
         >
           Opening Meeting
         </ChecklistItem>
         <ChecklistItem
-          linkTo={`${url}/inspection`}
+          linkto={`${url}/inspection`}
           iscomplete={stepStatus[CertificationStep.SITE_INSPECTION]}
           isactivate={currentStep === CertificationStep.SITE_INSPECTION}
         >
           Site Inspection
         </ChecklistItem>
         <ChecklistItem
-          linkTo={`${url}/interview`}
+          linkto={`${url}/interview`}
           iscomplete={stepStatus[CertificationStep.EMPLOYEE_INTERVIEW]}
           isactivate={currentStep === CertificationStep.EMPLOYEE_INTERVIEW}
         >
           Employee Interviews
         </ChecklistItem>
         <ChecklistItem
-          linkTo={`${url}/observation`}
+          linkto={`${url}/observation`}
           iscomplete={stepStatus[CertificationStep.OBSERVATIONS]}
           isactivate={currentStep === CertificationStep.OBSERVATIONS}
         >
           Observations
         </ChecklistItem>
         <ChecklistItem
-          linkTo={`${url}/close`}
+          linkto={`${url}/close`}
           iscomplete={stepStatus[CertificationStep.CLOSE_MEETING]}
           isactivate={currentStep === CertificationStep.CLOSE_MEETING}
         >
           Closing Meeting
         </ChecklistItem>
         <ChecklistItem
-          linkTo={`${url}/certissue`}
+          linkto={`${url}/certissue`}
           iscomplete={stepStatus[CertificationStep.CERTIFICATION_ISSUE]}
           isactivate={currentStep === CertificationStep.CERTIFICATION_ISSUE}
         >
@@ -61,9 +61,15 @@ const SideBar: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className }) 
 
       <SectionHeading>Evidence</SectionHeading>
       <SimpleMenu>
-        <SimpleMenu.Item icon={<FilePdfOutlined />}>PDF Evidence</SimpleMenu.Item>
-        <SimpleMenu.Item icon={<PictureOutlined />}>Photo Evidence</SimpleMenu.Item>
-        <SimpleMenu.Item icon={<VideoCameraOutlined />}>Video Evidence</SimpleMenu.Item>
+        <SimpleMenu.Item linkto={`${url}/observation`} icon={<FilePdfOutlined />}>
+          PDF Evidence
+        </SimpleMenu.Item>
+        <SimpleMenu.Item linkto={`${url}/observation`} icon={<PictureOutlined />}>
+          Photo Evidence
+        </SimpleMenu.Item>
+        <SimpleMenu.Item linkto={`${url}/observation`} icon={<VideoCameraOutlined />}>
+          Video Evidence
+        </SimpleMenu.Item>
       </SimpleMenu>
     </div>
   );

@@ -1,22 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Descriptions } from 'antd';
+import { format as formateDate } from 'date-fns';
+import { useCertification } from 'store/certification/hooks';
 
 type ProjectSummaryProps = {
-  className?: string
-}
+  className?: string;
+};
 
-const ProjectSummary: React.FC<ProjectSummaryProps> = ({ className }) => (
-  <Descriptions size="small" column={3} className={className}>
-    <Descriptions.Item label="CoC">Forests LTD</Descriptions.Item>
-    <Descriptions.Item label="Auditor"><a>Vidhucraft</a></Descriptions.Item>
-    <Descriptions.Item label="Start Date">2020-01-10</Descriptions.Item>
-    <Descriptions.Item label="Certification Date">2020-10-10</Descriptions.Item>
-    <Descriptions.Item label="Address">
-      1 Middle, Nowhere, USA, 02115
-    </Descriptions.Item>
-  </Descriptions>
-);
+const ProjectSummary: React.FC<ProjectSummaryProps> = ({ className }) => {
+  const { certificate } = useCertification();
+
+  return (
+    <Descriptions size="small" column={3} className={className}>
+      <Descriptions.Item label="Name">{certificate?.fsc_name}</Descriptions.Item>
+      <Descriptions.Item label="Auditor">
+        <a>Greenblocks</a>
+      </Descriptions.Item>
+      <Descriptions.Item label="Start Date">
+        {certificate && formateDate(new Date(certificate.createdon), 'do MMM yyyy')}
+      </Descriptions.Item>
+      <Descriptions.Item label="Certification Date">
+        {certificate && formateDate(new Date(certificate.modifiedon), 'do MMM yyyy')}
+      </Descriptions.Item>
+      <Descriptions.Item label="Address">1 Middle, Nowhere, USA, 02115</Descriptions.Item>
+    </Descriptions>
+  );
+};
 
 const StyledProjectSummary = styled(ProjectSummary)`
   background-color: #f2f6fa;

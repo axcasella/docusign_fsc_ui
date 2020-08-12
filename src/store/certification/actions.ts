@@ -4,8 +4,11 @@ import {
   CertificationStep,
   CompleteStepAction,
   SetStepRoutesAction,
-  SetCurrentStepAction
+  SetCurrentStepAction,
+  LoadCertificationAction,
 } from './types';
+
+import * as certification from 'services/certification/certification.service';
 
 export const setStepStatus = (step: CertificationStep, status: boolean) => (
   dispatch: ThunkDispatch<{}, {}, CompleteStepAction>
@@ -25,10 +28,28 @@ export const setStepRoutes = (stepRoutes: SetStepRoutesAction['payload']) => (
     payload: stepRoutes,
   });
 
-export const setCurrentStep = (step: CertificationStep) => (
-  dispatch: ThunkDispatch<{}, {}, SetCurrentStepAction>
-) =>
+export const setCurrentStep = (step: CertificationStep) => (dispatch: ThunkDispatch<{}, {}, SetCurrentStepAction>) =>
   dispatch({
     type: ActionType.SET_CURRENT_STEP,
     payload: { step },
   });
+
+export const loadOrCreateCertification = () => async (dispatch: ThunkDispatch<{}, {}, LoadCertificationAction>) => {
+  let cert = await certification.getActiveCertificate();
+
+  if (!cert) {
+    await certification.addNewCertificate();
+    cert = await certification.getActiveCertificate();
+  }
+
+  if (!cert) {
+    return;
+  }
+
+  dispatch({
+    type: ActionType.LOAD_CERTIFICATION,
+    payload: {
+      cert,
+    },
+  });
+};

@@ -1,6 +1,16 @@
 import { CertificationStep } from './types';
+import { CertificateType } from 'services/certification/types';
 
-const defaultState = {
+const defaultState: {
+  steps: {
+    [key in CertificationStep]: boolean;
+  };
+  routes: {
+    [key in CertificationStep]: string;
+  };
+  currentStep: CertificationStep;
+  activeCertificate?: CertificateType;
+} = {
   steps: {
     [CertificationStep.OPEN_MEETING]: false,
     [CertificationStep.SITE_INSPECTION]: false,
@@ -17,8 +27,8 @@ const defaultState = {
     [CertificationStep.CLOSE_MEETING]: '',
     [CertificationStep.CERTIFICATION_ISSUE]: '',
   },
-  currentStep: CertificationStep.OPEN_MEETING
+  currentStep: CertificationStep.OPEN_MEETING,
+  activeCertificate: undefined,
 };
 
 export default defaultState;
-
