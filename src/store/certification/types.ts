@@ -1,4 +1,4 @@
-import { CertificateType } from "services/certification/types";
+import { CertificateType, EvaluationType } from 'services/certification/types';
 
 export enum CertificationStep {
   OPEN_MEETING,
@@ -37,6 +37,12 @@ export interface SetCurrentStepAction extends IBaseAction {
 export interface LoadCertificationAction extends IBaseAction {
   payload: {
     cert: CertificateType;
+  };
+}
+
+export interface LoadEvaluationsAction extends IBaseAction {
+  payload: {
+    evaluations: EvaluationType[];
   };
 }
 

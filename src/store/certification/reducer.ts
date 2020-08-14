@@ -1,5 +1,11 @@
 import { ActionType } from './';
-import { AllActionTypes, CompleteStepAction, SetCurrentStepAction, LoadCertificationAction } from './types';
+import {
+  AllActionTypes,
+  CompleteStepAction,
+  SetCurrentStepAction,
+  LoadCertificationAction,
+  LoadEvaluationsAction,
+} from './types';
 import defaultState from './defaultState';
 
 export default function (state = defaultState, action: AllActionTypes) {
@@ -29,6 +35,11 @@ export default function (state = defaultState, action: AllActionTypes) {
       return {
         ...state,
         activeCertificate: (action as LoadCertificationAction).payload.cert,
+      };
+    case ActionType.LOAD_EVALUATIONS:
+      return {
+        ...state,
+        evaluations: (action as LoadEvaluationsAction).payload.evaluations,
       };
     default:
       return state;

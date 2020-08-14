@@ -38,3 +38,31 @@ export type CertificateType = {
   _modifiedonbehalfby_value?: any;
   utcconversiontimezonecode?: any;
 };
+
+export type EvaluationType = {
+  '@odata.etag': string;
+  fsc_dateto: Date;
+  _owningbusinessunit_value: string;
+  statecode: number;
+  statuscode: number;
+  _fsc_certificateid_value: string;
+  _createdby_value: string;
+  timezoneruleversionnumber: number;
+  fsc_evaluationid: string;
+  _ownerid_value: string;
+  modifiedon: Date;
+  _owninguser_value: string;
+  _modifiedby_value: string;
+  versionnumber: number;
+  fsc_datefrom: Date;
+  createdon: Date;
+  fsc_name: string;
+  fsc_comment: string;
+  importsequencenumber?: any;
+  utcconversiontimezonecode?: any;
+  _modifiedonbehalfby_value?: any;
+  _createdonbehalfby_value?: any;
+  overriddencreatedon?: any;
+  fsc_auditteamleader?: any;
+  _owningteam_value?: any;
+};

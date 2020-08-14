@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as CertActions from './actions';
+import * as EvaluationService from 'services/certification/evaluation.service';
 import { CertificationStep, StepRoutes } from './types';
 import { RootState } from 'store/types';
 
@@ -31,9 +32,38 @@ export const useCertification = () => {
 
   useEffect(() => {
     dispatch(CertActions.loadOrCreateCertification());
-  }, [dispatch]);
+  }, []);
 
   return {
     certificate,
+  };
+};
+
+export const useEvaluations = () => {
+  const { certificate } = useCertification();
+  const dispatch = useDispatch();
+  const evaluations = useSelector((state: RootState) => state.cert.evaluations);
+
+  useEffect(() => {
+    if (certificate) {
+      dispatch(CertActions.loadEvaluations(certificate.fsc_fsccertificateid));
+    }
+  }, [certificate]);
+
+  const postEvaluation = async (evidence: string, comment: string) => {
+    if (!certificate) return;
+    console.log('posting');
+    const res = await EvaluationService.addNewEvaluation(certificate.fsc_fsccertificateid, evidence, comment);
+    console.log(res);
+    setTimeout(() => {
+      // Dynamic seems to have a replica lag in their DB
+      dispatch(CertActions.loadEvaluations(certificate.fsc_fsccertificateid));
+    }, 1000);
+    console.log('dispatched');
+  };
+
+  return {
+    evaluations,
+    postEvaluation,
   };
 };

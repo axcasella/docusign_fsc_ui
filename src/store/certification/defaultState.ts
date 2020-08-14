@@ -1,5 +1,5 @@
 import { CertificationStep } from './types';
-import { CertificateType } from 'services/certification/types';
+import { CertificateType, EvaluationType } from 'services/certification/types';
 
 const defaultState: {
   steps: {
@@ -8,6 +8,7 @@ const defaultState: {
   routes: {
     [key in CertificationStep]: string;
   };
+  evaluations: EvaluationType[];
   currentStep: CertificationStep;
   activeCertificate?: CertificateType;
 } = {
@@ -27,6 +28,7 @@ const defaultState: {
     [CertificationStep.CLOSE_MEETING]: '',
     [CertificationStep.CERTIFICATION_ISSUE]: '',
   },
+  evaluations: [],
   currentStep: CertificationStep.OPEN_MEETING,
   activeCertificate: undefined,
 };

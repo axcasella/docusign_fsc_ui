@@ -6,9 +6,11 @@ import {
   SetStepRoutesAction,
   SetCurrentStepAction,
   LoadCertificationAction,
+  LoadEvaluationsAction,
 } from './types';
 
 import * as certification from 'services/certification/certification.service';
+import * as evaluation from 'services/certification/evaluation.service';
 
 export const setStepStatus = (step: CertificationStep, status: boolean) => (
   dispatch: ThunkDispatch<{}, {}, CompleteStepAction>
@@ -50,6 +52,17 @@ export const loadOrCreateCertification = () => async (dispatch: ThunkDispatch<{}
     type: ActionType.LOAD_CERTIFICATION,
     payload: {
       cert,
+    },
+  });
+};
+
+export const loadEvaluations = (certId: string) => async (dispatch: ThunkDispatch<{}, {}, LoadEvaluationsAction>) => {
+  let evaluations = await evaluation.getEvaluations(certId);
+
+  dispatch({
+    type: ActionType.LOAD_EVALUATIONS,
+    payload: {
+      evaluations,
     },
   });
 };
