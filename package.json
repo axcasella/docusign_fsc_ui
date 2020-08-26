@@ -7,6 +7,7 @@
     "@rehooks/local-storage": "^2.4.0",
     "@types/react-redux": "^7.1.9",
     "antd": "^4.4.3",
+    "axios": "^0.20.0",
     "date-fns": "^2.15.0",
     "global": "^4.4.0",
     "jwt-decode": "^2.2.0",

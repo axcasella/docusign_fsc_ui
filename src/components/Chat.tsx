@@ -71,16 +71,10 @@ const Chat: React.FC<IChat> = ({ className }) => {
 
   return (
     <React.Fragment>
-      <Widget className={className} handleNewUserMessage={handleNewUserMessage} title="" subtitle="" />
+      <Widget handleNewUserMessage={handleNewUserMessage} title="" subtitle="" />
       <ChatStyles />
     </React.Fragment>
   );
 };
 
-const StyledChat = styled(Chat)`
-  .rcw-launcher {
-    background-color: #1890ff;
-  }
-`;
-
-export default StyledChat;
+export default Chat;

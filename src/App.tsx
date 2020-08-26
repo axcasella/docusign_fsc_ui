@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
-import { Login, Certificate } from 'pages';
+import { Login, Certificate, DocusignAuth } from 'pages';
 import { AuthRoute } from 'components';
 import { useAuth, AuthProvider } from './services/auth';
+
 
 const Home = () => {
   const history = useHistory();
@@ -22,6 +23,9 @@ const App = () => {
         <Switch>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/signingComplete">
+            <DocusignAuth />
           </Route>
           <AuthRoute path="/certification">
             <Certificate />

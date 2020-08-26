@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Form, Button, Input } from 'antd';
+import { useAuth } from 'services/auth';
+import { UserRole } from 'services/auth/auth.service';
 
 interface AddEvaluationProps {
   onsubmit: (evaluation: { evidence: string; comment: string }) => void;
 }
 
 const AddEvaluation: React.FC<AddEvaluationProps> = ({ onsubmit }) => {
+  const { user } = useAuth();
   const [evidence, setEvidence] = useState<string>('');
   const [comment, setComment] = useState<string>('');
 
@@ -14,6 +17,8 @@ const AddEvaluation: React.FC<AddEvaluationProps> = ({ onsubmit }) => {
     setEvidence('');
     setComment('');
   };
+
+  if (user?.role === UserRole.APPLICANT) return <></>;
 
   return (
     <>
@@ -28,11 +33,13 @@ const AddEvaluation: React.FC<AddEvaluationProps> = ({ onsubmit }) => {
           value={comment}
         />
       </Form.Item>
-      <Form.Item>
-        <Button size={'small'} htmlType="submit" onClick={handleSubmit} type="primary">
-          Add Comment
-        </Button>
-      </Form.Item>
+      {user?.role === UserRole.CB && (
+        <Form.Item>
+          <Button size={'small'} htmlType="submit" onClick={handleSubmit} type="primary">
+            Add Comment
+          </Button>
+        </Form.Item>
+      )}
     </>
   );
 };

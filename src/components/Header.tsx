@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { PageHeader, Button } from 'antd';
 import { useAuth } from 'services/auth';
 import { Container } from '.';
+import { useCertification } from 'store/certification/hooks';
 
 const Header = styled.div`
   box-shadow: 0 0 10px rgba(32, 45, 74, 0.2);
@@ -22,12 +23,14 @@ const StyledPageHeader = styled(PageHeader)`
 
 export default () => {
   const { isAuth, logout, goToLoginPage, user } = useAuth();
+  const { isComplete } = useCertification();
 
   const loggedOutFragment = [
     <Button key="1" onClick={goToLoginPage}>
       Login
     </Button>,
   ];
+
   const loggedInFragment = [
     <span key="1">Welcome {user?.name}</span>,
     <Button key="2" type="default" onClick={logout}>
@@ -35,12 +38,14 @@ export default () => {
     </Button>,
   ];
 
+  const getCertificateStatus = () => (isComplete ? 'COMPLETED' : 'INCOMPLETE');
+
   return (
     <Header>
       <Container>
         <StyledPageHeader
           title="Forests LTD"
-          tags={<StatusTag>Inprogress</StatusTag>}
+          tags={<StatusTag>{`${user?.role} - ${getCertificateStatus()}`}</StatusTag>}
           extra={isAuth ? loggedInFragment : loggedOutFragment}
         />
       </Container>
