@@ -1,21 +1,31 @@
 import React from 'react';
-import { Typography } from 'antd';
+import { Typography, Button } from 'antd';
 import TimelineControl from './TimelineControl';
 import { CertificationStep } from 'store/certification/types';
 import { Evaluation, AddEvaluation } from 'components/evaluation';
 import { useEvaluations } from 'store/certification/hooks';
+import { GoogleOutlined } from '@ant-design/icons';
+
+const FOLDER_ID = '19pnNCAn-xFSfa6zRbQXOfoQKYyDPZ3mk';
 
 const Observations = () => {
   const { evaluations, postEvaluation } = useEvaluations();
-  
+
   return (
     <>
       <Typography.Title level={3}>Observations</Typography.Title>
+      <Button
+        icon={<GoogleOutlined />}
+        onClick={() => window.open(`https://drive.google.com/drive/u/1/folders/${FOLDER_ID}`, '_blank')}
+      >
+        Upload to google drive
+      </Button>
       <iframe
         title="evidences"
-        src="https://drive.google.com/embeddedfolderview?id=19pnNCAn-xFSfa6zRbQXOfoQKYyDPZ3mk"
+        src={`https://drive.google.com/embeddedfolderview?id=${FOLDER_ID}`}
         style={{ width: '100%', height: '250px', border: 0 }}
       ></iframe>
+
       {evaluations.map((ev) => (
         <Evaluation
           key={ev.fsc_evaluationid}
