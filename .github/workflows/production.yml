@@ -35,6 +35,7 @@ jobs:
         run: yarn build
         env:
           CI: false
+          REACT_APP_COM_POLL: 1000
 
       # Deploy to S3
       - name: Deploy to S3
