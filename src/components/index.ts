@@ -7,3 +7,4 @@ export { SimpleMenu } from './SimpleMenu';
 export { default as AuthRoute } from './AuthRoute';
 export { default as ZoomLink } from './ZoomLink';
 export { default as Chat } from './Chat';
+export { default as DocusignLogin } from './DocusignLogin';

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Button, Card, Form, Input } from 'antd';
+import { Typography, Button } from 'antd';
 import TimelineControl from './TimelineControl';
 import { CertificationStep } from 'store/certification/types';
-import { UnlockOutlined, ExportOutlined } from '@ant-design/icons';
-import { DOCUSIGN_OAUTH_URL, useDocusign, getFinalCertificateUrl } from 'services/docusign';
+import { ExportOutlined } from '@ant-design/icons';
+import { useDocusign, getFinalCertificateUrl } from 'services/docusign';
 
 import { useAuth } from 'services/auth';
 import { useCertification } from 'store/certification/hooks';
 import { UserRole } from 'services/auth/auth.service';
+import { DocusignLogin } from 'components';
 
 const CertificateIssueContainer = () => {
   const { user } = useAuth();
@@ -31,17 +32,7 @@ const CertificateNonApplicantView = () => {
   );
 };
 
-const DocusignLogin = () => {
-  const authorize = () => {
-    window.location.href = DOCUSIGN_OAUTH_URL;
-  };
 
-  return (
-    <Button size="middle" onClick={authorize} icon={<UnlockOutlined />}>
-      Login with Docusign
-    </Button>
-  );
-};
 
 const CertificateIssue = () => {
   const [url, setUrl] = useState('');

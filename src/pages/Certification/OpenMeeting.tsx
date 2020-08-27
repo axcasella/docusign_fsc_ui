@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Button } from 'antd';
-import { ZoomLink } from 'components';
+import { Typography } from 'antd';
+import { ZoomLink, DocusignLogin } from 'components';
 import TimelineControl from './TimelineControl';
 import { ReactComponent as MeetingSVG } from 'assets/meeting.svg';
 import { CertificationStep } from 'store/certification/types';
 import { useAuth } from 'services/auth';
-import { getInitialCertificateUrl } from 'services/docusign';
+import { getInitialCertificateUrl, useDocusign } from 'services/docusign';
 import { UserRole } from 'services/auth/auth.service';
 
 const OpenMeeting = () => {
   const [url, setUrl] = useState('');
   const { user } = useAuth();
+  const { isAuth } = useDocusign();
 
   useEffect(() => {
     if (!user) return;
@@ -29,9 +30,13 @@ const OpenMeeting = () => {
       </Typography.Paragraph>
       {user?.role === UserRole.APPLICANT && (
         <Typography.Paragraph>
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            Sign Initial Agreement
-          </a>
+          {isAuth ? (
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              Sign Initial Agreement
+            </a>
+          ) : (
+            <DocusignLogin />
+          )}
         </Typography.Paragraph>
       )}
       <Typography.Paragraph>
