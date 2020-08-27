@@ -4,6 +4,7 @@ import { PageHeader, Button } from 'antd';
 import { useAuth } from 'services/auth';
 import { Container } from '.';
 import { useCertification } from 'store/certification/hooks';
+import { UserRole } from 'services/auth/auth.service';
 
 const Header = styled.div`
   box-shadow: 0 0 10px rgba(32, 45, 74, 0.2);
@@ -40,11 +41,30 @@ export default () => {
 
   const getCertificateStatus = () => (isComplete ? 'COMPLETED' : 'INCOMPLETE');
 
+  const getAvatar = () => {
+    if (!user) return '';
+    return user.role === UserRole.CB || user.role === UserRole.FSC || user.role === UserRole.ASI
+      ? 'https://i.imgur.com/0xzsAsS.png'
+      : 'https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/tree.png';
+  };
+
+  const getOrgName = () => {
+    if (!user) return '';
+    return user.role === UserRole.CB || user.role === UserRole.FSC || user.role === UserRole.ASI
+      ? 'National Certification Board'
+      : 'Forests LTD';
+  };
+
   return (
     <Header>
       <Container>
         <StyledPageHeader
-          title="Forests LTD"
+          title={getOrgName()}
+          avatar={{
+            src: getAvatar(),
+            shape: 'square',
+            gap: 0,
+          }}
           tags={user && <StatusTag>{`${user?.role} - ${getCertificateStatus()}`}</StatusTag>}
           extra={isAuth ? loggedInFragment : loggedOutFragment}
         />
