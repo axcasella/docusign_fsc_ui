@@ -15,12 +15,12 @@ const PEOPLE_INFO = [
 
 const Interviews = () => (
   <>
-    <Typography.Title level={3}>Employ Interviews</Typography.Title>
+    <Typography.Title level={3}>Employee Interviews</Typography.Title>
     <Row>
       <Col md={{ span: 8 }}>
         {PEOPLE_INFO.map(({ label, value }) => (
           <div key={value}>
-            <Checkbox value={value}>{label}</Checkbox>
+            <Checkbox name={value}>{label}</Checkbox>
           </div>
         ))}
       </Col>

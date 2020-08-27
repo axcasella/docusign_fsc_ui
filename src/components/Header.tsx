@@ -45,7 +45,7 @@ export default () => {
       <Container>
         <StyledPageHeader
           title="Forests LTD"
-          tags={<StatusTag>{`${user?.role} - ${getCertificateStatus()}`}</StatusTag>}
+          tags={user && <StatusTag>{`${user?.role} - ${getCertificateStatus()}`}</StatusTag>}
           extra={isAuth ? loggedInFragment : loggedOutFragment}
         />
       </Container>

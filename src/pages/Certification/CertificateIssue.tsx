@@ -7,15 +7,26 @@ import { DOCUSIGN_OAUTH_URL, useDocusign, getFinalCertificateUrl } from 'service
 
 import { useAuth } from 'services/auth';
 import { useCertification } from 'store/certification/hooks';
+import { UserRole } from 'services/auth/auth.service';
 
 const CertificateIssueContainer = () => {
+  const { user } = useAuth();
+
+  return (
+    <>
+      {user?.role !== UserRole.APPLICANT ? <CertificateNonApplicantView /> : 'Certificate signing in progress'}
+      <TimelineControl step={CertificationStep.CERTIFICATION_ISSUE} />
+    </>
+  );
+};
+
+const CertificateNonApplicantView = () => {
   const { isAuth } = useDocusign();
 
   return (
     <>
       <Typography.Title level={3}>Certificate Issue</Typography.Title>
       {isAuth ? <CertificateIssue /> : <DocusignLogin />}
-      <TimelineControl step={CertificationStep.CERTIFICATION_ISSUE} />
     </>
   );
 };
@@ -41,6 +52,7 @@ const CertificateIssue = () => {
     if (!user) return;
     getFinalCertificateUrl(user.name, user.email).then(setUrl);
   }, [user]);
+
   return (
     <>
       <p>Logged into Docusign</p>
