@@ -21,7 +21,7 @@ const ProjectSummary: React.FC<ProjectSummaryProps> = ({ className }) => {
         {certificate && formateDate(new Date(certificate.createdon), 'do MMM yyyy')}
       </Descriptions.Item>
       <Descriptions.Item label="Certification Date">
-        {certificate && formateDate(new Date(certificate.modifiedon), 'do MMM yyyy')}
+        {certificate && certificate.fsc_certificatestatus === 2 && formateDate(new Date(certificate.modifiedon), 'do MMM yyyy')}
       </Descriptions.Item>
       <Descriptions.Item label="Address">1 Middle, Nowhere, USA, 02115</Descriptions.Item>
     </Descriptions>
