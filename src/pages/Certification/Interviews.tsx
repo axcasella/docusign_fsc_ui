@@ -26,9 +26,8 @@ const Interviews = () => (
       </Col>
       <Col md={{ span: 16 }}>
         <Typography.Paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          eu fringilla nulla. Cras euismod erat at felis semper, at tincidunt
-          nibh facilisis. Suspendisse potenti.
+          Each of the following employees will be interviewed. Interviews may be
+          done 1 on 1 or in a group.
         </Typography.Paragraph>
         <Typography.Paragraph>
           <ZoomLink link='https://zoom.us/j/92401797536' />

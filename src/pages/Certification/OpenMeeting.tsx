@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Typography } from 'antd';
-import { ZoomLink, DocusignLogin } from 'components';
-import TimelineControl from './TimelineControl';
-import { ReactComponent as MeetingSVG } from 'assets/meeting.svg';
-import { CertificationStep } from 'store/certification/types';
-import { useAuth } from 'services/auth';
-import { getInitialCertificateUrl, useDocusign } from 'services/docusign';
-import { UserRole } from 'services/auth/auth.service';
+import React, { useState, useEffect } from "react";
+import { Typography } from "antd";
+import { ZoomLink, DocusignLogin } from "components";
+import TimelineControl from "./TimelineControl";
+import { ReactComponent as MeetingSVG } from "assets/meeting.svg";
+import { CertificationStep } from "store/certification/types";
+import { useAuth } from "services/auth";
+import { getInitialCertificateUrl, useDocusign } from "services/docusign";
+import { UserRole } from "services/auth/auth.service";
 
 const OpenMeeting = () => {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState("");
   const { user } = useAuth();
   const { isAuth } = useDocusign();
 
@@ -22,17 +22,18 @@ const OpenMeeting = () => {
     <>
       <Typography.Title level={3}>Open Meeting</Typography.Title>
       <Typography.Paragraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu fringilla nulla. Cras euismod erat at
-        felis semper, at tincidunt nibh facilisis. Suspendisse potenti.
+        The opening meeting will be 30 minutes long. The company and the auditor
+        will discuss audit results from the previous years and agree on audit
+        procedures.
       </Typography.Paragraph>
       <Typography.Paragraph>
-        <MeetingSVG width="256" height="256" />
+        <MeetingSVG width='256' height='256' />
       </Typography.Paragraph>
       {user?.role === UserRole.APPLICANT && (
         <Typography.Paragraph>
           {isAuth ? (
-            <a href={url} target="_blank" rel="noopener noreferrer">
-              Sign Initial Agreement
+            <a href={url} target='_blank' rel='noopener noreferrer'>
+              Sign FSC Trademark License Agreement
             </a>
           ) : (
             <DocusignLogin />
@@ -40,7 +41,7 @@ const OpenMeeting = () => {
         </Typography.Paragraph>
       )}
       <Typography.Paragraph>
-        <ZoomLink link="https://zoom.us/j/92401797536" />
+        <ZoomLink link='https://zoom.us/j/92401797536' />
       </Typography.Paragraph>
       <TimelineControl step={CertificationStep.OPEN_MEETING} />
     </>

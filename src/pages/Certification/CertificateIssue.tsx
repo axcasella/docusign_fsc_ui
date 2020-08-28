@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { Typography, Button } from 'antd';
-import TimelineControl from './TimelineControl';
-import { CertificationStep } from 'store/certification/types';
-import { ExportOutlined } from '@ant-design/icons';
-import { useDocusign, getFinalCertificateUrl } from 'services/docusign';
+import React, { useState, useEffect } from "react";
+import { Typography, Button } from "antd";
+import TimelineControl from "./TimelineControl";
+import { CertificationStep } from "store/certification/types";
+import { ExportOutlined } from "@ant-design/icons";
+import { useDocusign, getFinalCertificateUrl } from "services/docusign";
 
-import { useAuth } from 'services/auth';
-import { useCertification } from 'store/certification/hooks';
-import { UserRole } from 'services/auth/auth.service';
-import { DocusignLogin } from 'components';
+import { useAuth } from "services/auth";
+import { useCertification } from "store/certification/hooks";
+import { UserRole } from "services/auth/auth.service";
+import { DocusignLogin } from "components";
 
 const CertificateIssueContainer = () => {
   const { user } = useAuth();
 
   return (
     <>
-      {user?.role !== UserRole.APPLICANT ? <CertificateNonApplicantView /> : 'Certificate signing in progress'}
+      {user?.role !== UserRole.APPLICANT ? (
+        <CertificateNonApplicantView />
+      ) : (
+        "Certificate signing in progress"
+      )}
       <TimelineControl step={CertificationStep.CERTIFICATION_ISSUE} />
     </>
   );
@@ -32,10 +36,8 @@ const CertificateNonApplicantView = () => {
   );
 };
 
-
-
 const CertificateIssue = () => {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState("");
   const { user } = useAuth();
   const { markAsCompleted, isComplete } = useCertification();
 
@@ -47,13 +49,17 @@ const CertificateIssue = () => {
   return (
     <>
       <p>Logged into Docusign</p>
-      <a href={url} target="_blank" rel="noopener noreferrer">
-        Final Certificate&nbsp;
+      <a href={url} target='_blank' rel='noopener noreferrer'>
+        FSC Certificate&nbsp;
         <ExportOutlined />
       </a>
       <br />
       <br />
-      <Button size="small" disabled={isComplete} onClick={() => markAsCompleted()}>
+      <Button
+        size='small'
+        disabled={isComplete}
+        onClick={() => markAsCompleted()}
+      >
         Mark as Completed
       </Button>
     </>
