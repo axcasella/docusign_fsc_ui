@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { PageHeader, Button } from 'antd';
-import { useAuth } from 'services/auth';
-import { Container } from '.';
-import { useCertification } from 'store/certification/hooks';
-import { UserRole } from 'services/auth/auth.service';
+import React from "react";
+import styled from "styled-components";
+import { PageHeader, Button } from "antd";
+import { useAuth } from "services/auth";
+import { Container } from ".";
+import { useCertification } from "store/certification/hooks";
+import { UserRole } from "services/auth/auth.service";
 
 const Header = styled.div`
   box-shadow: 0 0 10px rgba(32, 45, 74, 0.2);
@@ -27,32 +27,36 @@ export default () => {
   const { isComplete } = useCertification();
 
   const loggedOutFragment = [
-    <Button key="1" onClick={goToLoginPage}>
+    <Button key='1' onClick={goToLoginPage}>
       Login
     </Button>,
   ];
 
   const loggedInFragment = [
-    <span key="1">Welcome {user?.name}</span>,
-    <Button key="2" type="default" onClick={logout}>
+    <span key='1'>Welcome {user?.name}</span>,
+    <Button key='2' type='default' onClick={logout}>
       Logout
     </Button>,
   ];
 
-  const getCertificateStatus = () => (isComplete ? 'COMPLETED' : 'INCOMPLETE');
+  const getCertificateStatus = () => (isComplete ? "COMPLETED" : "INCOMPLETE");
 
   const getAvatar = () => {
-    if (!user) return '';
-    return user.role === UserRole.CB || user.role === UserRole.FSC || user.role === UserRole.ASI
-      ? 'https://i.imgur.com/0xzsAsS.png'
-      : 'https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/tree.png';
+    if (!user) return "";
+    return user.role === UserRole.CB ||
+      user.role === UserRole.FSC ||
+      user.role === UserRole.ASI
+      ? "https://i.imgur.com/0xzsAsS.png"
+      : "https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/tree.png";
   };
 
   const getOrgName = () => {
-    if (!user) return '';
-    return user.role === UserRole.CB || user.role === UserRole.FSC || user.role === UserRole.ASI
-      ? 'National Certification Board'
-      : 'Forests LTD';
+    if (!user) return "";
+    return user.role === UserRole.CB ||
+      user.role === UserRole.FSC ||
+      user.role === UserRole.ASI
+      ? "National Certification Board"
+      : "Michael Scott Paper Company";
   };
 
   return (
@@ -62,10 +66,16 @@ export default () => {
           title={getOrgName()}
           avatar={{
             src: getAvatar(),
-            shape: 'square',
+            shape: "square",
             gap: 0,
           }}
-          tags={user && <StatusTag>{`${user?.role} - ${getCertificateStatus()}`}</StatusTag>}
+          tags={
+            user && (
+              <StatusTag>{`${
+                user?.role
+              } - ${getCertificateStatus()}`}</StatusTag>
+            )
+          }
           extra={isAuth ? loggedInFragment : loggedOutFragment}
         />
       </Container>
