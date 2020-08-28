@@ -5,10 +5,13 @@ import { CertificationStep } from 'store/certification/types';
 import { Evaluation, AddEvaluation } from 'components/evaluation';
 import { useEvaluations } from 'store/certification/hooks';
 import { GoogleOutlined } from '@ant-design/icons';
+import { UserRole } from 'services/auth/auth.service';
+import { useAuth } from 'services/auth';
 
 const FOLDER_ID = '19pnNCAn-xFSfa6zRbQXOfoQKYyDPZ3mk';
 
 const Observations = () => {
+  const { user } = useAuth();
   const { evaluations, postEvaluation } = useEvaluations();
 
   return (
@@ -26,7 +29,8 @@ const Observations = () => {
         style={{ width: '100%', height: '250px', border: 0 }}
       ></iframe>
 
-      {evaluations.map((ev) => (
+      
+      {(user && user.role !== UserRole.APPLICANT) && evaluations.map((ev) => (
         <Evaluation
           key={ev.fsc_evaluationid}
           username={'sdaf'}
