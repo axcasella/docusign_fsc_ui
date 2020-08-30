@@ -18,7 +18,7 @@ const AddEvaluation: React.FC<AddEvaluationProps> = ({ onsubmit }) => {
     setComment('');
   };
 
-  if (user?.role === UserRole.APPLICANT) return <></>;
+  if (user?.role !== UserRole.CB) return <></>;
 
   return (
     <>
@@ -33,13 +33,11 @@ const AddEvaluation: React.FC<AddEvaluationProps> = ({ onsubmit }) => {
           value={comment}
         />
       </Form.Item>
-      {user?.role === UserRole.CB && (
-        <Form.Item>
-          <Button size={'small'} htmlType="submit" onClick={handleSubmit} type="primary">
-            Add Comment
-          </Button>
-        </Form.Item>
-      )}
+      <Form.Item>
+        <Button size={'small'} htmlType="submit" onClick={handleSubmit} type="primary">
+          Add Comment
+        </Button>
+      </Form.Item>
     </>
   );
 };

@@ -1,44 +1,73 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Docusign FSC Hackathon UI
 
-## Available Scripts
+## Overview
+This is the UI for our App3 project. When the user logs in, they enter a certification session which is a guided walk through through the certification process.
 
-In the project directory, you can run:
+The system supports multiple user roles (Applicant, CB, FSC, ASI). Each roles is given a different walk through experience which is tailored based on their needs and 
+permissioning.
 
-### `yarn start`
+Data is communicated and persisted by through the backend REST API server
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features and Technologies Used
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Authentication and Authorization
+Users are logged in by by exchanging their credentials for a JWT token from the backend
+server. This JWT token is signed by an asymmetric key and encodes information just as the
+users email and role.
 
-### `yarn test`
+The token is decoded to facilitate Role Based Access Control
+  - Applicant Role
+    - Allowed to sign initial certificate
+    - Not allowed to view evaluations
+    - Not allowed to sign final certificate
+  - Certification Board Role
+    - Allowed to view and add evaluations
+    - Allowed to sign final certificate
+    - Not allowed to sign initial certificate
+  - FSC and ASI roles
+    - Not allowed to sign initial certificate
+    - Allowed to view evaluations
+    - Not allowed to add evaluations
+    - Not allowed to sign final cert
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Docusign OAuth2
+OAuth2 is used to make request to Docusign on behalf of a user. This is used to generate
+certificate to sign with the appropriate recipients. 
 
-### `yarn build`
+OAuth code and token exchange is facilitated by proxying requests through the backend
+server. When the token is received by the frontend, it is saved in the browser's local
+storage and refreshed when it's expired
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Google Drive Integration
+A google drive folder is used to upload evidences and observations which are then
+evaluated by the Certification Board. This folder is embedded and integration in the UI's
+observation step
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Evaluations
+Evaluations allow the Certification Board to comment on observations. This data is
+persisted in Dynamics' evaluation schema. Every evaluation has a date, subject
+(observation) and related certificate that the observation is part of.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+CRUD operations on the evaluations schema are proxied through the backend application via
+a RESTful interface.
 
-### `yarn eject`
+### Live Chat
+The live chat allows different parties to communicate with each other in a unified chat
+interface. This allows conversations to be scoped to the certificate thats in progress
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This is implemented using long polling which is the what allows the real time chat to 
+take place. Periodically the UI polls the backend to check if any new messages are
+available. If there are, this is then rendered in the UI. The chat component is aware
+if the message was send by the current user or by a different and uses this information
+to visually distinguish different messages.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Further Improvements
+This a lot of areas that this PoC can be improved on
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+ - We'd like to implement a more seamless integration with google drive which allows
+ users to drag and drop files and add evaluations in the form of annotations directly in the file view
+ 
+ - Since there are multiple actors in this certification process, use of notifications 
+ in the form of in app notification and emails would help complete the process faster
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
