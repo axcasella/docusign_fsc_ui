@@ -15,6 +15,19 @@ Users are logged in by by exchanging their credentials for a JWT token from the 
 server. This JWT token is signed by an asymmetric key and encodes information just as the
 users email and role.
 
+```
+{
+  "user": {
+    "id": "5f48737f8968a481770ab4df",
+    "email": "cb@cb.org",
+    "name": "Tom",
+    "role": "CB"
+  },
+  "iat": 1598755434,
+  "exp": 1630291434
+}
+```
+
 The token is decoded to facilitate Role Based Access Control
   - Applicant Role
     - Allowed to sign initial certificate
@@ -51,6 +64,8 @@ persisted in Dynamics' evaluation schema. Every evaluation has a date, subject
 CRUD operations on the evaluations schema are proxied through the backend application via
 a RESTful interface.
 
+![Observations](imgs/observations.png)
+
 ### Live Chat
 The live chat allows different parties to communicate with each other in a unified chat
 interface. This allows conversations to be scoped to the certificate thats in progress
@@ -60,6 +75,8 @@ take place. Periodically the UI polls the backend to check if any new messages a
 available. If there are, this is then rendered in the UI. The chat component is aware
 if the message was send by the current user or by a different and uses this information
 to visually distinguish different messages.
+
+![Live Chat](imgs/live_chat.png)
 
 
 ## Further Improvements
