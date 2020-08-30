@@ -29,17 +29,21 @@ const Observations = () => {
         style={{ width: '100%', height: '250px', border: 0 }}
       ></iframe>
 
-      
-      {(user && user.role !== UserRole.APPLICANT) && evaluations.map((ev) => (
-        <Evaluation
-          key={ev.fsc_evaluationid}
-          username={'sdaf'}
-          article={ev.fsc_name}
-          comment={ev.fsc_comment}
-          date={ev.modifiedon}
-        />
-      ))}
-      <AddEvaluation onsubmit={({ evidence, comment }) => postEvaluation(evidence, comment)} />
+      {user && user.role !== UserRole.APPLICANT && (
+        <>
+          {evaluations &&
+            evaluations.map((ev) => (
+              <Evaluation
+                key={ev.fsc_evaluationid}
+                username={'sdaf'}
+                article={ev.fsc_name}
+                comment={ev.fsc_comment}
+                date={ev.modifiedon}
+              />
+            ))}
+          <AddEvaluation onsubmit={({ evidence, comment }) => postEvaluation(evidence, comment)} />
+        </>
+      )}
       <TimelineControl step={CertificationStep.OBSERVATIONS} />
     </>
   );
