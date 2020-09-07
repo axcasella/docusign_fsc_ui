@@ -75,3 +75,11 @@ There are a lot of areas that this PoC can be improved on
 - We'd like to implement a more seamless integration with google drive which allows users to drag and drop files and add evaluations in the form of annotations directly in the file view
 
 - Since there are multiple actors in this certification process, use of notifications and email alerts would help make the process more efficient
+
+## Links to the rest of the app
+
+[Frontend repo](https://github.com/axcasella/docusign_fsc_ui)
+
+[Blockchain microservice](https://github.com/axcasella/fsc_blockchain_microservice)
+
+Checkout our demo video on [Youtube](https://www.youtube.com/watch?v=NoS7zAkZ2Gc&feature=youtu.be)!
