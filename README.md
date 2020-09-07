@@ -76,9 +76,16 @@ There are a lot of areas that this PoC can be improved on
 
 - Since there are multiple actors in this certification process, use of notifications and email alerts would help make the process more efficient
 
+## Try it out
+
+```
+npm install
+npm run start
+```
+
 ## Links to the rest of the app
 
-[Frontend repo](https://github.com/axcasella/docusign_fsc_ui)
+[Backend server](https://github.com/axcasella/docusign_fsc_server)
 
 [Blockchain microservice](https://github.com/axcasella/fsc_blockchain_microservice)
 
