@@ -83,6 +83,22 @@ npm install
 npm run start
 ```
 
+Our UI is live at: http://docusignfsc.s3-website-us-east-1.amazonaws.com/login
+
+Auditor:
+
+```
+Email (case sensitive): cb@cb.org
+Password: password
+```
+
+CoC company representative:
+
+```
+Email (case sensitive): Applicant@tree.org
+Password: password
+```
+
 ## Links to the rest of the app
 
 [Backend server](https://github.com/axcasella/docusign_fsc_server)
